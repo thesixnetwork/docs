@@ -7,25 +7,26 @@ This is a draft version of technical specifications, please consider it as a rou
 
 ## Digital Identity
 ### For 1st state (online)
-To welcome existing user we will use `Proof of Social` and `Proof of Authority` concept for identity approval just like `keybase.io` did. And we'll extend further by adding more 3rd party for example `Line`, `Messenger`, `WeChat` and some others through `oauth2` specifications.
-- `Untrust` (Not logged in) user should not access any data.
-- `Lowest Trust` (Link account with social) user should able to read only public and write owned data.
-- `Simple Trust` (Link account with more than 1 socials) user should able to read shared data with other.
-- `Social Trust` (Endorsed by friends) user should able to interact with other.
+To welcome existing user we will use `Proof of Social` and `Proof of Authority` concept for identity approval just like `keybase.io` did. And we'll extend further by adding more 3rd party for example `Line`, `Messenger`, `WeChat` and some others through `oauth2` specifications on `Federation Server`.
+- `Proof of nothing` (Not logged in) user should able to read only public content.
+- `Proof of Social` (Link account with social) user should able to read and write owned data.
+- `Proof of Liveness` (Link account with active social) user should able to read and share data with other.
+- `Proof of Endore` (Endorsed by others) user should able to interact with other user at limitted rate.
 
 The key concept is the more users social connected mean more trust we give, This also open opportunity for `cross social` payments. Let's say `@alice` on Facebook can pay `@bob` on `Twitter` and `@bob` get notify via `Twitter` when transaction complete.
 
 We'll focus on easiest engagement first for this persona, not much security will apply here and the user will have less permission at this state.
 
-### For 2nd state (on chain)
+### For 2nd state (online-onchain)
 To let the user take care their own privacy we'll separate user levels as declared below.
-- `Highest secure` preferred user should create and funded their own `XLM` account from anywhere.
-- `High secure` preferred user should generate `XLM` account locally and funded from anywhere they desired.
-- `Regular secure` preferred user should let server generate and fund `XLM` account with desired user `PIN` (server blind).
+- `Highest private` preferred user should create and funded their own `XLM` account (all user control).
+- `High private` preferred user should generate `XLM` account locally via our wallet with desired user `PIN` (server blind).
+- `Regular private` preferred user should let server generate and fund `XLM` account after fiat paid with desired user `PIN` (server blind).
+- `Low private` preferred user should let server generate and fund `XLM` then email generated one time `PIN` (server blind).
 
-And we will link user account securely on chain with `Hyperledger Fabric` via `Membership Service`.
+And we will link user account securely on chain with `Hyperledger Fabric` via `Membership Service`. We will use [W3C standard](https://www.w3.org/TR/verifiable-claims-data-model/#privacy-considerations) to ensure future compatible.
 
-### For 3rd state (offline)
+### For 3rd state (offline-online-onchain)
 `Federation Server` and `Compliance Server` will apply here, we will use an `Anchor` for handle regulatory, like Anti-Money Laundering (AML). The `Customer DB`, `Sanction DB`, `Compliance DB` and `KYC` process is required for this step.
 - `KYC Trust` (Done KYC, 2 Factors) user should able to receive payments.
 - `AML Trust` (Pass AML, 2 Factors) user should able to send/request payments.
