@@ -2,7 +2,7 @@
 # SIX documentation
 This is a draft version of technical specifications, please consider it as a rough idea which will need some evaluation first.
 
-## 2018 Plan and Teach stacks
+## 2018 Plan and Tech stacks
 ![](./img/tech-plan-2018.png)
 
 ## Digital Identity
